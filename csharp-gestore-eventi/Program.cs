@@ -24,6 +24,7 @@ namespace csharp_gestore_eventi
 
                 Console.WriteLine($"Quante prenotazioni vuoi effettuare? Posti disponibili {e.GetMaxCapacity().ToString()}. Digita un numero: ");
                 int reservationRequest = int.Parse(Console.ReadLine());
+                e.ReserveSeats(reservationRequest);
                 Console.WriteLine();
                 bool stillCancelling = true;
                 while (stillCancelling)
@@ -36,9 +37,15 @@ namespace csharp_gestore_eventi
                     {
                         Console.WriteLine("Ok gestione evento terminata! Uscita in corso...");
                         stillCancelling = false;
+                        break;
                     }
+                    Console.WriteLine($"Quante prenotazioni vuoi disdire? Posti disponibili {(e.GetMaxCapacity() - e.GetReservedSeats()).ToString()}. Digita un numero: ");
+                    int cancellationRequest = int.Parse(Console.ReadLine());
+                    e.CancelReservation(cancellationRequest);
+
+
                 }
-                
+
             }
             catch (Exception ex)
             {
