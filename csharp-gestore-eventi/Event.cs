@@ -8,7 +8,7 @@ namespace csharp_gestore_eventi
 {
     public class Event
     {
-        private string? title;
+        private string title;
         private DateTime date;
         private int maxCapacity;
         private int bookedSeatsQuantity;
@@ -17,6 +17,7 @@ namespace csharp_gestore_eventi
         public Event() { 
             //TODO
         }
+
         //getters
         public string GetTitle()
         {
@@ -28,7 +29,15 @@ namespace csharp_gestore_eventi
             return this.date;
         }
 
+        public int getMaxCapacity()
+        {
+            return this.maxCapacity;
+        }
 
+        public int getBookedSeatsQuantity()
+        {
+            return this.bookedSeatsQuantity;
+        }
 
         //setters
 
@@ -48,5 +57,23 @@ namespace csharp_gestore_eventi
 
             this.date = date;
         }
+
+        private void SetMaxCapacity(int maxCapacity)
+        {
+            if (maxCapacity <= 0)
+                throw new Exception("Inserire un numero positivo per la capienza massima dell'evento.");
+            
+            this.maxCapacity = maxCapacity;
+        
+        }
+
+        private void SetBookedSeatsQuantity(int startingBookedSeatsQuantity)
+        {
+            if (startingBookedSeatsQuantity < 0 || startingBookedSeatsQuantity > this.maxCapacity)
+                throw new Exception("numero di posti già prenotati non valido, il numero deve essere maggiore o uguale a zero e non puo superare la capacità massima");
+        
+            this.bookedSeatsQuantity = startingBookedSeatsQuantity;
+        }
+
     }
 }
