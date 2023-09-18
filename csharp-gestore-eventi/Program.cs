@@ -10,6 +10,43 @@ namespace csharp_gestore_eventi
             CultureInfo italianFormat = new CultureInfo("it-IT");
             try
             {
+                Console.WriteLine($"Creazione evento singolo:");
+                Console.Write($"Titolo evento: ");
+                string title = Console.ReadLine();
+
+                Console.Write("Data evento in formato dd/MM/yyyy: ");
+                string stringDate = Console.ReadLine();
+                DateTime date = DateTime.ParseExact(stringDate, "dd/MM/yyyy", italianFormat);
+
+                Console.Write("Capacità massima di prenotazioni: ");
+                int maxCapacity = int.Parse(Console.ReadLine());
+                Event e = new Event(title, date, maxCapacity);
+
+                Console.WriteLine($"Quante prenotazioni vuoi effettuare? Posti disponibili {e.GetMaxCapacity().ToString()}. Digita un numero: ");
+                int reservationRequest = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                bool stillCancelling = true;
+                while (stillCancelling)
+                {
+                    Console.WriteLine($"Posti prenotati: {e.GetReservedSeats().ToString()}");
+                    Console.WriteLine($"Posti liberi: {(e.GetMaxCapacity() - e.GetReservedSeats()).ToString()}");
+                    Console.WriteLine("Vuoi disdire delle prenotazioni? s/n");
+                    string answer = Console.ReadLine().ToLower();
+                    if (answer == "n" || answer == "no")
+                    {
+                        Console.WriteLine("Ok gestione evento terminata! Uscita in corso...");
+                        stillCancelling = false;
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
                 Console.Write("Inizializzazione, che nome vuoi dare al Programma di Eventi? Digita: ");
                 string programTitle = Console.ReadLine();
                 EventsProgram customProgram = new EventsProgram(programTitle);
