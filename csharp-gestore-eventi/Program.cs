@@ -23,6 +23,10 @@ namespace csharp_gestore_eventi
             Event evento1 = new Event(title, date, maxCapacity);
             Console.WriteLine(evento1);
 
+            EventsProgram programma = new EventsProgram("provaProgrammaEventi");
+            programma.AddEvent(evento1);
+            programma.SearchByDate(stringDate);
+
         }
     }
 }
