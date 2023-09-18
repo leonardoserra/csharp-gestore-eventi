@@ -18,6 +18,16 @@ namespace csharp_gestore_eventi
             events = new List<Event>();
         }
 
+
+        //static methods
+
+        public static void PrintListEvents(List<Event> eventsList)
+        {
+            foreach(Event e in eventsList)
+            {
+                Console.WriteLine(e);
+            }
+        }
         //methods
         public void AddEvent(Event e) 
         { 
@@ -29,11 +39,6 @@ namespace csharp_gestore_eventi
             CultureInfo italianFormat = new CultureInfo("it-IT");
             DateTime date = DateTime.ParseExact(dateString, "dd/MM/yyyy", italianFormat);
             List<Event> filteredEvents = new List<Event>();
-            /*this.events.Select(e =>
-            {
-                if(e.GetDate() == date)
-                    filteredEvents.Add((Event) e);
-            }); */
 
             for(int i = 0; i < this.events.Count; i++)
             {

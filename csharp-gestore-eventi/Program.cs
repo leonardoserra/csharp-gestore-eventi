@@ -25,8 +25,9 @@ namespace csharp_gestore_eventi
 
             EventsProgram programma = new EventsProgram("provaProgrammaEventi");
             programma.AddEvent(evento1);
-            programma.SearchByDate(stringDate);
 
+            List<Event> listaFiltrata= programma.SearchByDate(stringDate);
+            EventsProgram.PrintListEvents(listaFiltrata);
         }
     }
 }
