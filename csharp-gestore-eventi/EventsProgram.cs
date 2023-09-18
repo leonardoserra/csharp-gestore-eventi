@@ -10,7 +10,7 @@ namespace csharp_gestore_eventi
     public class EventsProgram
     {
         protected string title;
-        protected List<Event> Events { get; }
+        public List<Event> Events { get; }
 
         public EventsProgram(string title)
         {
@@ -21,7 +21,7 @@ namespace csharp_gestore_eventi
 
         //static methods
 
-        public static string PrintListEvents(List<Event> eventsList)
+        public static string ListEventsInfo(List<Event> eventsList)
         {
             string list = "";
             if (eventsList.Count > 0)
@@ -69,7 +69,9 @@ namespace csharp_gestore_eventi
         public string ProgramDetails()
         {
             return $@"Programma {this.title}:
-                    {PrintListEvents(this.Events)}";
+                    Lista eventi:
+ 
+                    {ListEventsInfo(this.Events)}";
         }
     }
 }

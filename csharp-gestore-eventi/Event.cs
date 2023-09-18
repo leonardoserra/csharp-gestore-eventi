@@ -100,7 +100,7 @@ namespace csharp_gestore_eventi
         }
         public override string ToString()
         {
-            return $"Dettagli evento:\r\n\tData dell'evento: {this.date.ToString("dd/MM/yyyy")}\r\n\tTitolo: {this.title}";
+            return $"\r\n\tData dell'evento: {this.date.ToString("dd/MM/yyyy")} - Titolo: {this.title}\r\n";
         }
 
     }
