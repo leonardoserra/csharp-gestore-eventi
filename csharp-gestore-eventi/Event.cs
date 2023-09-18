@@ -14,8 +14,11 @@ namespace csharp_gestore_eventi
         protected int bookedSeatsQuantity;
 
         //constructor
-        public Event() { 
-            //TODO
+        public Event(string title, DateTime date, int maxCapacity) {
+            SetTitle(title);   
+            SetDate(date);
+            SetMaxCapacity(maxCapacity);
+            this.bookedSeatsQuantity = 0;
         }
 
         //getters
@@ -51,8 +54,8 @@ namespace csharp_gestore_eventi
         }
         public void SetDate(DateTime date)
         {
-            DateTime dateTime = DateTime.Now;
-            if (date < dateTime)
+            DateTime today = DateTime.Now;
+            if (date < today)
                 throw new Exception("La data assegnata è già passata! Inserire una data futura. Inserire una data valida in formato dd/MM/yyyy");
 
             this.date = date;
@@ -65,14 +68,6 @@ namespace csharp_gestore_eventi
             
             this.maxCapacity = maxCapacity;
         
-        }
-
-        private void SetBookedSeatsQuantity(int startingBookedSeatsQuantity)
-        {
-            if (startingBookedSeatsQuantity < 0 || startingBookedSeatsQuantity > this.maxCapacity)
-                throw new Exception("numero di posti già prenotati non valido, il numero deve essere maggiore o uguale a zero e non puo superare la capacità massima");
-        
-            this.bookedSeatsQuantity = startingBookedSeatsQuantity;
         }
 
         public override string ToString()
