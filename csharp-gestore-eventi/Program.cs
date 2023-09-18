@@ -7,42 +7,54 @@ namespace csharp_gestore_eventi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Per creare un evento compili i campi richiesti:\r\n\t");
+            Console.Write("Inizializzazione, che nome vuoi dare al Programma di Eventi? Digita: ");
+            string programTitle = Console.ReadLine();
+            Console.Write($"Bene! Programma {programTitle} creato! Quanti eventi andrai ad aggiungere al programma? Digita un numero: ");
+            EventsProgram customProgram = new EventsProgram(programTitle);
+            
+            
+            int eventQuantity = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+
+
+
             try
             {
-                Console.Write("Titolo evento: ");
-                string title = Console.ReadLine();
+                bool managingEvents = true;
+                while (managingEvents)
+                {
+                    
 
-                Console.Write("Data evento in formato dd/MM/yyyy: ");
-                CultureInfo italianFormat = new CultureInfo("it-IT");
-                string stringDate = Console.ReadLine();
-                DateTime date = DateTime.ParseExact(stringDate,"dd/MM/yyyy",italianFormat);
+                    Console.Write("Titolo evento: ");
+                    string title = Console.ReadLine();
 
-                Console.Write("Capacità massima di prenotazioni: ");
-                int maxCapacity = int.Parse(Console.ReadLine());
-                Event evento1 = new Event(title, date, maxCapacity);
-                //Console.WriteLine(evento1);
-                Event evento2 = new Event("Musica d'insieme", date, 389);
-                //Console.WriteLine(evento2);
+                    Console.Write("Data evento in formato dd/MM/yyyy: ");
+                    CultureInfo italianFormat = new CultureInfo("it-IT");
+                    string stringDate = Console.ReadLine();
+                    DateTime date = DateTime.ParseExact(stringDate, "dd/MM/yyyy", italianFormat);
 
-
-                EventsProgram programma = new EventsProgram("provaProgrammaEventi");
-                programma.AddEvent(evento1);
-                programma.AddEvent(evento2);
-
-                List<Event> listaFiltrata = programma.SearchByDate(stringDate);
-                string infoProgram = EventsProgram.ListEventsInfo(programma.Events);
-                //Console.WriteLine(infoProgram);
-                string infoFilteredProgram = EventsProgram.ListEventsInfo(listaFiltrata);
-                //Console.WriteLine(infoFilteredProgram);
-                //Console.WriteLine("Numero eventi in programma:" + programma.EventsQuantity());
-                Console.WriteLine(programma.ProgramDetails());
-
-                programma.DismissAllEvents();
-                //Console.WriteLine("Numero eventi in programma:" + programma.EventsQuantity());
+                    Console.Write("Capacità massima di prenotazioni: ");
+                    int maxCapacity = int.Parse(Console.ReadLine());
+                    Event evento1 = new Event(title, date, maxCapacity);
 
 
-                Console.WriteLine(programma.ProgramDetails());
+                    EventsProgram programma = new EventsProgram("provaProgrammaEventi");
+                    programma.AddEvent(evento1);
+
+                    List<Event> listaFiltrata = programma.SearchByDate(stringDate);
+                    string infoProgram = EventsProgram.ListEventsInfo(programma.Events);
+                    //Console.WriteLine(infoProgram);
+                    string infoFilteredProgram = EventsProgram.ListEventsInfo(listaFiltrata);
+                    //Console.WriteLine(infoFilteredProgram);
+                    //Console.WriteLine("Numero eventi in programma:" + programma.EventsQuantity());
+                    Console.WriteLine(programma.ProgramDetails());
+
+                    programma.DismissAllEvents();
+                    //Console.WriteLine("Numero eventi in programma:" + programma.EventsQuantity());
+
+
+                    Console.WriteLine(programma.ProgramDetails());
+                }
             }
             catch (Exception ex)
             {
