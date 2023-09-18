@@ -54,13 +54,15 @@ namespace csharp_gestore_eventi
 
             try
             {
+                Console.WriteLine();
+                Console.WriteLine("---------------------SECONDA PARTE-------------------------");
                 Console.Write("Inizializzazione, che nome vuoi dare al Programma di Eventi? Digita: ");
                 string programTitle = Console.ReadLine();
                 EventsProgram customProgram = new EventsProgram(programTitle);
                 Console.Write($"Bene! Programma {programTitle} creato! Quanti eventi andrai ad aggiungere al programma? Digita un numero: ");
                 int eventQuantity = int.Parse(Console.ReadLine());
                 List<Event> events = new List<Event>();
-                bool managingEvents = true;
+                //bool managingEvents = true;
                 //while (managingEvents)
                 //{
                     for (int i = 0; i < eventQuantity; i++)
@@ -100,6 +102,36 @@ namespace csharp_gestore_eventi
                 List<Event> eventsByDate = customProgram.SearchByDate(requestedDate);
                 string eventListByDate = EventsProgram.ListEventsInfo(eventsByDate);
                 Console.WriteLine(eventListByDate);
+
+
+                //BONUS conferenza
+                Console.WriteLine();
+                Console.WriteLine("___________________________BONUS_________________________________");
+
+                Console.WriteLine($"Inserisci una conferenza al tuo programma {programTitle}");
+                Console.Write($"Titolo conferenza: ");
+                string conferenceTitle = Console.ReadLine();
+
+                Console.Write("Data conferenza in formato dd/MM/yyyy: ");
+                string stringConferenceDate = Console.ReadLine();
+                DateTime conferenceDate = DateTime.ParseExact(stringConferenceDate, "dd/MM/yyyy", italianFormat);
+
+                Console.Write("Capacità massima di prenotazioni per la conferenza: ");
+                int maxConferenceCapacity = int.Parse(Console.ReadLine());
+
+                Console.Write("Nome del relatore: ");
+                string relatorName = Console.ReadLine();
+
+                Console.Write("Prezzo Conferenza: ");
+                float conferencePrice = float.Parse(Console.ReadLine());
+
+                Conference conference1 = new Conference(conferenceTitle, conferenceDate, maxConferenceCapacity, relatorName, conferencePrice);
+                customProgram.AddEvent(conference1);
+
+                totalEventsInActualProgram = customProgram.EventsQuantity();
+                Console.WriteLine($"Ci sono ben {totalEventsInActualProgram} eventi e conferenze in programma!");
+                customProgram.ProgramDetails();
+
                 customProgram.DismissAllEvents();
             }
             catch (Exception ex)
