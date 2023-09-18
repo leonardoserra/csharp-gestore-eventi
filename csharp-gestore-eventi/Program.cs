@@ -15,7 +15,7 @@ namespace csharp_gestore_eventi
                 EventsProgram customProgram = new EventsProgram(programTitle);
                 Console.Write($"Bene! Programma {programTitle} creato! Quanti eventi andrai ad aggiungere al programma? Digita un numero: ");
                 int eventQuantity = int.Parse(Console.ReadLine());
-                List<Event> events = new List<Event>(eventQuantity);
+                List<Event> events = new List<Event>();
                 bool managingEvents = true;
                 //while (managingEvents)
                 //{
@@ -24,7 +24,7 @@ namespace csharp_gestore_eventi
                         try
                         {
                             Console.WriteLine($"Creazione evento n.{i + 1}");
-                            Console.Write($"Titolo evento n.{i+1}: ");
+                            Console.Write($"Titolo evento: ");
                             string title = Console.ReadLine();
 
                             Console.Write("Data evento in formato dd/MM/yyyy: ");
@@ -33,7 +33,8 @@ namespace csharp_gestore_eventi
 
                             Console.Write("Capacità massima di prenotazioni: ");
                             int maxCapacity = int.Parse(Console.ReadLine());
-                            events[i] = new Event(title, date, maxCapacity);
+                            Event e = new Event(title, date, maxCapacity);
+                            customProgram.AddEvent(e);
 
                         }catch (Exception ex){
                             Console.WriteLine(ex.Message);
