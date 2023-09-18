@@ -10,12 +10,12 @@ namespace csharp_gestore_eventi
     public class EventsProgram
     {
         protected string title;
-        protected List<Event> events;
+        protected List<Event> Events { get; }
 
         public EventsProgram(string title)
         {
             this.title = title;
-            events = new List<Event>();
+            Events = new List<Event>();
         }
 
 
@@ -31,7 +31,7 @@ namespace csharp_gestore_eventi
         //methods
         public void AddEvent(Event e) 
         { 
-            this.events.Add(e);
+            this.Events.Add(e);
         }
 
         public List<Event> SearchByDate(string dateString)
@@ -40,12 +40,17 @@ namespace csharp_gestore_eventi
             DateTime date = DateTime.ParseExact(dateString, "dd/MM/yyyy", italianFormat);
             List<Event> filteredEvents = new List<Event>();
 
-            for(int i = 0; i < this.events.Count; i++)
+            for(int i = 0; i < this.Events.Count; i++)
             {
-                if (events[i].GetDate() == date)
-                    filteredEvents.Add(events[i]);
+                if (Events[i].GetDate() == date)
+                    filteredEvents.Add(Events[i]);
             }
             return filteredEvents;
+        }
+
+        public int EventsQuantity()
+        {
+            return this.Events.Count;
         }
     }
 }
