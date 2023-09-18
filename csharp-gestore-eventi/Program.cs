@@ -32,13 +32,17 @@ namespace csharp_gestore_eventi
 
                 List<Event> listaFiltrata = programma.SearchByDate(stringDate);
                 string infoProgram = EventsProgram.ListEventsInfo(programma.Events);
-                Console.WriteLine(infoProgram);
+                //Console.WriteLine(infoProgram);
                 string infoFilteredProgram = EventsProgram.ListEventsInfo(listaFiltrata);
-                Console.WriteLine(infoFilteredProgram);
-                Console.WriteLine("Numero eventi in programma:" + programma.EventsQuantity());
-                programma.DismissAllEvents();
-                Console.WriteLine("Numero eventi in programma:" + programma.EventsQuantity());
+                //Console.WriteLine(infoFilteredProgram);
+                //Console.WriteLine("Numero eventi in programma:" + programma.EventsQuantity());
+                Console.WriteLine(programma.ProgramDetails());
 
+                programma.DismissAllEvents();
+                //Console.WriteLine("Numero eventi in programma:" + programma.EventsQuantity());
+
+
+                Console.WriteLine(programma.ProgramDetails());
             }
             catch (Exception ex)
             {
