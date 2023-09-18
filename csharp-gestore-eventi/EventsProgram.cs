@@ -23,9 +23,14 @@ namespace csharp_gestore_eventi
 
         public static string PrintListEvents(List<Event> eventsList)
         {
-            foreach(Event e in eventsList)
+            string list = "";
+            if (eventsList.Count > 0)
             {
-                return e.ToString();
+                foreach (Event e in eventsList)
+                {
+                    list += (" " + e.ToString());
+                }
+                return list;
             }
             return "la lista è vuota";
         }
@@ -59,6 +64,8 @@ namespace csharp_gestore_eventi
             this.Events.Clear();
         }
 
+
+        //todo
         public string ProgramDetails()
         {
             return $@"Programma {this.title}:
