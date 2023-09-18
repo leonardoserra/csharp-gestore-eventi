@@ -21,12 +21,13 @@ namespace csharp_gestore_eventi
 
         //static methods
 
-        public static void PrintListEvents(List<Event> eventsList)
+        public static string PrintListEvents(List<Event> eventsList)
         {
             foreach(Event e in eventsList)
             {
-                Console.WriteLine(e);
+                return e.ToString();
             }
+            return "la lista è vuota";
         }
         //methods
         public void AddEvent(Event e) 
@@ -56,6 +57,12 @@ namespace csharp_gestore_eventi
         public void DismissAllEvents()
         {
             this.Events.Clear();
+        }
+
+        public string ProgramDetails()
+        {
+            return $@"Programma {this.title}:
+                    {PrintListEvents(this.Events)}";
         }
     }
 }
