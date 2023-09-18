@@ -90,13 +90,13 @@ namespace csharp_gestore_eventi
         public void CancelReservation(int reservationToCancel)
         {
             DateTime today = DateTime.Now;
-            
+            int availableSeats = this.maxCapacity - this.reservedSeats;
             if (this.date < today)
                 throw new Exception("Impossibile cancellare la prenotazione, evento già passato!");
-            if (reservationToCancel < this.reservedSeats)
+            if (reservationToCancel > this.reservedSeats)
                 throw new Exception($"Il numero di disdette supera il numero di prenotazioni attuale. Il numero di prenotazioni è {this.reservedSeats}");
 
-            this.reservedSeats -= reservationToCancel;
+            this.reservedSeats = this.maxCapacity - (availableSeats + reservationToCancel);
         }
         public override string ToString()
         {
