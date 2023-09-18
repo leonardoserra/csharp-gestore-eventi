@@ -16,9 +16,13 @@ namespace csharp_gestore_eventi
             CultureInfo italianFormat = new CultureInfo("it-IT");
             string stringDate = Console.ReadLine();
             DateTime date = DateTime.ParseExact(stringDate,"dd/MM/yyyy",italianFormat);
-            //DateTime date = DateTime.ParseExact(stringDate,"dd/MM/yyyy",null);
 
-            Console.WriteLine($"{title} {date.ToString("dd/MM/yyyy")}");
+            Console.Write("Capacità massima di prenotazioni: ");
+            int maxCapacity = int.Parse(Console.ReadLine());
+
+            Event evento1 = new Event(title, date, maxCapacity);
+            Console.WriteLine(evento1);
+
         }
     }
 }
