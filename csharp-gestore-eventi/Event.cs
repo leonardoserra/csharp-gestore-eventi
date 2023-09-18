@@ -8,10 +8,10 @@ namespace csharp_gestore_eventi
 {
     public class Event
     {
-        private string title;
-        private DateTime date;
-        private int maxCapacity;
-        private int bookedSeatsQuantity;
+        protected string title;
+        protected DateTime date;
+        protected int maxCapacity;
+        protected int bookedSeatsQuantity;
 
         //constructor
         public Event() { 
@@ -73,6 +73,11 @@ namespace csharp_gestore_eventi
                 throw new Exception("numero di posti già prenotati non valido, il numero deve essere maggiore o uguale a zero e non puo superare la capacità massima");
         
             this.bookedSeatsQuantity = startingBookedSeatsQuantity;
+        }
+
+        public override string ToString()
+        {
+            return $"Dettagli evento:\r\n\tData dell'evento: {this.date.ToString("dd/MM/yyyy")}\r\n\tTitolo: {this.title}";
         }
 
     }
