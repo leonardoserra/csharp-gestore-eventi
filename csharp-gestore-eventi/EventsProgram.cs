@@ -52,5 +52,10 @@ namespace csharp_gestore_eventi
         {
             return this.Events.Count;
         }
+
+        public void DismissAllEvents()
+        {
+            this.Events.Clear();
+        }
     }
 }
