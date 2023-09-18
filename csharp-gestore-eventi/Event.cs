@@ -11,14 +11,14 @@ namespace csharp_gestore_eventi
         protected string title;
         protected DateTime date;
         protected int maxCapacity;
-        protected int bookedSeatsQuantity;
+        protected int reservedSeats;
 
         //constructor
         public Event(string title, DateTime date, int maxCapacity) {
             SetTitle(title);   
             SetDate(date);
             SetMaxCapacity(maxCapacity);
-            this.bookedSeatsQuantity = 0;
+            this.reservedSeats = 0;
         }
 
         //getters
@@ -27,19 +27,19 @@ namespace csharp_gestore_eventi
             return this.title;
         }
 
-        public DateTime getDate()
+        public DateTime GetDate()
         {
             return this.date;
         }
 
-        public int getMaxCapacity()
+        public int GetMaxCapacity()
         {
             return this.maxCapacity;
         }
 
-        public int getBookedSeatsQuantity()
+        public int GetReservedSeats()
         {
-            return this.bookedSeatsQuantity;
+            return this.reservedSeats;
         }
 
         //setters
@@ -70,6 +70,20 @@ namespace csharp_gestore_eventi
         
         }
 
+
+        //utility methods
+
+        public void ReserveSeats(int seatsToReserve)
+        {
+            DateTime today = DateTime.Now;
+            int availableSeats = this.maxCapacity - this.reservedSeats;
+            if (this.date < today)
+                throw new Exception("Impossibile prenotare ulteriori posti, evento già passato!");
+            if(availableSeats<seatsToReserve)
+                throw new Exception($"Posti liberi inferiori a quelli richiesti. Il numero di posti ancora liberi è {availableSeats}");
+
+            this.reservedSeats += seatsToReserve;
+        }
         public override string ToString()
         {
             return $"Dettagli evento:\r\n\tData dell'evento: {this.date.ToString("dd/MM/yyyy")}\r\n\tTitolo: {this.title}";
