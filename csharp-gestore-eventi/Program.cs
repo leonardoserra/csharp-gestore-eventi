@@ -95,8 +95,8 @@ namespace csharp_gestore_eventi
                     
                 int totalEventsInActualProgram = customProgram.EventsQuantity();
                 Console.WriteLine($"Ci sono ben {totalEventsInActualProgram} eventi in programma!");
-                customProgram.ProgramDetails();
-
+                string eventsList = customProgram.ProgramDetails();
+                Console.WriteLine(eventsList);
                 Console.WriteLine("Cerca uno o piú eventi in una data specifica, digita gg/mm/aaaa: ");
                 string requestedDate = Console.ReadLine();
                 List<Event> eventsByDate = customProgram.SearchByDate(requestedDate);
@@ -130,7 +130,8 @@ namespace csharp_gestore_eventi
 
                 totalEventsInActualProgram = customProgram.EventsQuantity();
                 Console.WriteLine($"Ci sono ben {totalEventsInActualProgram} eventi e conferenze in programma!");
-                customProgram.ProgramDetails();
+                string eventsAndConferencesList = customProgram.ProgramDetails();
+                Console.WriteLine(eventsAndConferencesList);
 
                 customProgram.DismissAllEvents();
             }

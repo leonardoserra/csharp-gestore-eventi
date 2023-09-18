@@ -19,7 +19,7 @@ namespace csharp_gestore_eventi
 
         public override string ToString()
         {
-            return $"\r\n\tData dell'evento: {this.date.ToString("dd/MM/yyyy")} - Titolo: {this.title} - Relatore: {this.RelatorName} - Prezzo: {this.Price.ToString("0.00")}\r\n";
+            return $"\r\n\tData della conferenza: {this.date.ToString("dd/MM/yyyy")} - Titolo: {this.title} - Relatore: {this.RelatorName} - Prezzo: {this.Price.ToString("0.00")}\r\n";
         }
     }
 }
