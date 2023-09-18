@@ -7,34 +7,48 @@ namespace csharp_gestore_eventi
     {
         static void Main(string[] args)
         {
-            Console.Write("Inizializzazione, che nome vuoi dare al Programma di Eventi? Digita: ");
-            string programTitle = Console.ReadLine();
-            Console.Write($"Bene! Programma {programTitle} creato! Quanti eventi andrai ad aggiungere al programma? Digita un numero: ");
-            EventsProgram customProgram = new EventsProgram(programTitle);
-            
-            
-            int eventQuantity = int.Parse(Console.ReadLine());
-            Console.WriteLine();
+
+            CultureInfo italianFormat = new CultureInfo("it-IT");
 
 
 
             try
             {
+                Console.Write("Inizializzazione, che nome vuoi dare al Programma di Eventi? Digita: ");
+                string programTitle = Console.ReadLine();
+                EventsProgram customProgram = new EventsProgram(programTitle);
+                Console.Write($"Bene! Programma {programTitle} creato! Quanti eventi andrai ad aggiungere al programma? Digita un numero: ");
+                int eventQuantity = int.Parse(Console.ReadLine());
                 bool managingEvents = true;
                 while (managingEvents)
                 {
+                List<Event> events = new List<Event>(eventQuantity);
+                for (int i = 0; i < events.Count; i++)
+                {
+                    try
+                    {
+                        Console.Write($"Titolo evento n.{i+1}: ");
+                        string title = Console.ReadLine();
+
+                        Console.Write("Data evento in formato dd/MM/yyyy: ");
+                        string stringDate = Console.ReadLine();
+                        DateTime date = DateTime.ParseExact(stringDate, "dd/MM/yyyy", italianFormat);
+
+                        Console.Write("Capacità massima di prenotazioni: ");
+                        int maxCapacity = int.Parse(Console.ReadLine());
+                        events[i] = new Event(title, date, maxCapacity);
+
+                    }catch (Exception ex){
+                       Console.WriteLine(ex.Message);
+                       Console.WriteLine("Ri assegna i dati all evento");
+                       i--;
+                       continue;
+                    }
+                }
+                Console.WriteLine();
                     
 
-                    Console.Write("Titolo evento: ");
-                    string title = Console.ReadLine();
 
-                    Console.Write("Data evento in formato dd/MM/yyyy: ");
-                    CultureInfo italianFormat = new CultureInfo("it-IT");
-                    string stringDate = Console.ReadLine();
-                    DateTime date = DateTime.ParseExact(stringDate, "dd/MM/yyyy", italianFormat);
-
-                    Console.Write("Capacità massima di prenotazioni: ");
-                    int maxCapacity = int.Parse(Console.ReadLine());
                     Event evento1 = new Event(title, date, maxCapacity);
 
 
