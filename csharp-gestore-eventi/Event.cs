@@ -9,7 +9,7 @@ namespace csharp_gestore_eventi
     public class Event
     {
         private string? title;
-        private DateOnly date;
+        private DateTime date;
         private int maxCapacity;
         private int bookedSeatsQuantity;
 
@@ -23,6 +23,10 @@ namespace csharp_gestore_eventi
             return this.title;
         }
 
+        public DateTime getDate()
+        {
+            return this.date;
+        }
 
 
 
@@ -35,6 +39,14 @@ namespace csharp_gestore_eventi
                 throw new Exception("Titolo dell'evento mancante, inserirlo");
             
             this.title = title;
+        }
+        public void SetDate(DateTime date)
+        {
+            DateTime dateTime = DateTime.Now;
+            if (date < dateTime)
+                throw new Exception("La data assegnata è già passata! Inserire una data futura. Inserire una data valida in formato dd/MM/yyyy");
+
+            this.date = date;
         }
     }
 }
