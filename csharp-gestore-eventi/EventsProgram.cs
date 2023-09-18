@@ -28,15 +28,19 @@ namespace csharp_gestore_eventi
         {
             CultureInfo italianFormat = new CultureInfo("it-IT");
             DateTime date = DateTime.ParseExact(dateString, "dd/MM/yyyy", italianFormat);
-            this.events.Select(e =>
+            List<Event> filteredEvents = new List<Event>();
+            /*this.events.Select(e =>
             {
-                List<Event> filteredEvents = new List<Event>();
                 if(e.GetDate() == date)
-                    filteredEvents.AddEvent(e);
+                    filteredEvents.Add((Event) e);
+            }); */
 
-                    
-                
-            }); 
+            for(int i = 0; i < this.events.Count; i++)
+            {
+                if (events[i].GetDate() == date)
+                    filteredEvents.Add(events[i]);
+            }
+            return filteredEvents;
         }
     }
 }
