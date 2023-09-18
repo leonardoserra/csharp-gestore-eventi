@@ -81,8 +81,22 @@ namespace csharp_gestore_eventi
                 throw new Exception("Impossibile prenotare ulteriori posti, evento già passato!");
             if(availableSeats<seatsToReserve)
                 throw new Exception($"Posti liberi inferiori a quelli richiesti. Il numero di posti ancora liberi è {availableSeats}");
-
+            if(availableSeats == 0)
+                throw new Exception("Non è possibile effetturare prenotazioni per questo evento.");
+            
             this.reservedSeats += seatsToReserve;
+        }
+
+        public void CancelReservation(int reservationToCancel)
+        {
+            DateTime today = DateTime.Now;
+            
+            if (this.date < today)
+                throw new Exception("Impossibile cancellare la prenotazione, evento già passato!");
+            if (reservationToCancel < this.reservedSeats)
+                throw new Exception($"Il numero di disdette supera il numero di prenotazioni attuale. Il numero di prenotazioni è {this.reservedSeats}");
+
+            this.reservedSeats -= reservationToCancel;
         }
         public override string ToString()
         {
