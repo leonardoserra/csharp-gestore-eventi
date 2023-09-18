@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic;
+using System.Globalization;
 
 namespace csharp_gestore_eventi
 {
@@ -12,8 +13,10 @@ namespace csharp_gestore_eventi
             string title = Console.ReadLine();
 
             Console.Write("Data evento in formato dd/MM/yyyy: ");
+            CultureInfo italianFormat = new CultureInfo("it-IT");
             string stringDate = Console.ReadLine();
-            DateTime date = DateTime.ParseExact(stringDate,"dd/MM/yyyy",null);
+            DateTime date = DateTime.ParseExact(stringDate,"dd/MM/yyyy",italianFormat);
+            //DateTime date = DateTime.ParseExact(stringDate,"dd/MM/yyyy",null);
 
             Console.WriteLine($"{title} {date.ToString("dd/MM/yyyy")}");
         }
