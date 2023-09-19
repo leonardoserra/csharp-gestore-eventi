@@ -57,7 +57,7 @@ namespace csharp_gestore_eventi
                 }
             }
 
-
+             
             try
             {
                 Console.WriteLine();
